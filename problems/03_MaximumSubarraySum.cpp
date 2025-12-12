@@ -32,7 +32,6 @@ using namespace std;
 
 int maxSubArray(vector<int> vec){
     int currSum=0,maxSum=INT_MIN;
-
     for(int val: vec){
         currSum += val;
         maxSum = max(currSum, maxSum);
@@ -45,7 +44,7 @@ int maxSubArray(vector<int> vec){
 int main(){
     vector<int> vec = {3,-4,5,4,-1,7,-8};
     int res = maxSubArray(vec);
-    cout<<"Maximum subarray sum = "<<res;
+    cout<<"Maximum subarray sum : "<<res;
 return 0;
 }
 //        Time complexity = O(n)
