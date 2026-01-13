@@ -30,7 +30,7 @@ public:
 
     void insertionAtEnd(int val)
     {
-        Node* temp = new Node(val);
+        Node *temp = new Node(val);
 
         if (head == nullptr)
         {
@@ -38,7 +38,7 @@ public:
             return;
         }
 
-        Node* curr = head;
+        Node *curr = head;
 
         while (curr->next != nullptr)
         {
@@ -48,37 +48,48 @@ public:
         temp->prev = curr;
     }
 
-    void deleteAtIndex(int x)
+    void deleteByValue(int x)
     {
         if (head == nullptr)
         {
-            cout<<"List is empty!";
+            cout << "List is empty!";
             return;
         }
 
         Node *curr = head;
-        while (curr != nullptr){
-            Node* del = curr;
-            if(curr->data == x){
-                // for 1st node
-                if(curr->prev == nullptr){
-                    // for only one node
-                    if(curr->next == nullptr){
-                        head = nullptr;
-                    }else{
-                        head = curr->next;
-                        curr->next->prev = nullptr;
-                    }
-                }
-                // for last node
-                else if(curr->next == nullptr){
+        // for 1st node
+        if (curr->data == x)
+        {
+            // check for only node
+            if (curr->next == nullptr)
+            {
+                head = nullptr;
+            }
+            else
+            {
+                head = curr->next;
+                head->prev = nullptr;
+            }
+            cout << "Value " << x << " deleted from LL\n";
+            delete curr;
+            return;
+        }
+        while (curr != nullptr)
+        {
+            Node *del = curr;
+            if (curr->data == x)
+            {
+
+                if (curr->next == nullptr)
+                {
                     curr->prev->next = nullptr;
                 }
-                else{
+                else
+                {
                     curr->next->prev = curr->prev;
                     curr->prev->next = curr->next;
                 }
-                cout<<"Value "<<x<<" deleted from LL\n";
+                cout << "Value " << x << " deleted from LL\n";
                 delete del;
                 return;
             }
@@ -107,7 +118,7 @@ int main()
     list.insertionAtEnd(15);
     list.insertionAtEnd(25);
     list.insertionAtEnd(30);
-    list.deleteAtIndex(30);
-    list.deleteAtIndex(35);
+    list.deleteByValue(25);
+    list.deleteByValue(10);
     list.display();
-}  
+}
