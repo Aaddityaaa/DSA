@@ -1,7 +1,4 @@
-// Problem no => 509 on Leetcode 
-
-//  Ex =>   F(0) = 0, F(1) = 1
-//          F(n) = F(n - 1) + F(n - 2), for n > 1
+// Problem no => 1137 on Leetcode 
 
 
 #include<iostream>

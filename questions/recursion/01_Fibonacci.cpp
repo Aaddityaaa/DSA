@@ -19,3 +19,6 @@ int main(){
     cin>>num;
     cout<<"Fibonacci of "<<num<<" is : "<<fib(num);
 }
+
+// Time Complexity = O(2^n)
+// Space Complexity = O(n)
