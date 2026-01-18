@@ -1,3 +1,8 @@
+/* Preorder Traversal -> 
+    1. First root node
+    2. Left subtree
+    3. Right subtree   */
+    
 #include<iostream>
 using namespace std;
 
