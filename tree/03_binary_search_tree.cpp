@@ -60,12 +60,28 @@ public:
         }
     }
 
+    Node* get_Successor(Node* root){
+        root = root->right;
+        while(root != nullptr && root->left != nullptr){
+            root = root->left;
+        }
+        return root;
+    }
+
+    Node* get_Predecessor(Node* root){
+        root = root->left;
+        while(root != nullptr && root->right != nullptr){
+            root = root->right;
+        }
+        return root;
+    }
+
     // deletion in binary search tree
     Node* del(Node* root, int val){
         if(root == nullptr){
             return root;
         }
-        if(val <= root->data){
+        if(val < root->data){
             root->left = del(root->left, val);
         }
         else if(val > root->data){
@@ -78,7 +94,14 @@ public:
             if(root->right == nullptr){
                 return root->left;
             }
+            else{
+                Node* succ = get_Successor(root);
+                root->data = succ->data;
+                root->right = del(root->right,succ->data);
+            }
+
         }
+        return root;
     }
 
     void inOrder(Node *root)
@@ -108,8 +131,9 @@ int main()
     bst.inOrder(bst.root);
     cout<<"\n";
     bst.search(bst.root,20);
-    bst.search(bst.root,40);
-    bst.search(bst.root,23);
+    bst.del(bst.root, 25);
+    bst.del(bst.root, 23);
+    bst.inOrder(bst.root);
 }
 
 /*
