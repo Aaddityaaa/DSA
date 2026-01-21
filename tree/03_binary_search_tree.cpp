@@ -1,67 +1,94 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Node{
-    public:
+class Node
+{
+public:
     int data;
-    Node* left;
-    Node* right;
+    Node *left;
+    Node *right;
 
-    Node(int data, Node* left=nullptr, Node* right=nullptr){
+    Node(int data, Node *left = nullptr, Node *right = nullptr)
+    {
         this->data = data;
         this->left = left;
-        this->right = right; 
+        this->right = right;
     }
 };
 
-class BinarySearchTree{
-    public: 
-    Node* root = nullptr;
+class BinarySearchTree
+{
+public:
+    Node *root = nullptr;
 
-    BinarySearchTree(){
+    BinarySearchTree()
+    {
         root = nullptr;
     }
 
-    Node* insert(Node* root,int val){
-
-        if(root == nullptr){
+    Node *insert(Node *root, int val)
+    {
+        if (root == nullptr)
+        {
             return new Node(val);
         }
         // Insert in left subtree
-        if(val <= root->data){
-                root->left = insert(root->left,val);
-            }
-            //Insert in right subtree
-            else{
-                root->right  = insert(root->right,val);
-            }
-
-            return root;
+        if (val <= root->data){
+            root->left = insert(root->left, val);
         }
-    
+        // Insert in right subtree
+        else{
+            root->right = insert(root->right, val);
+        }
 
-    void inOrder(Node* root){
-        if(root == nullptr){
+        return root;
+    }
+
+    void search(Node* root,int val){
+        if (root == nullptr){
+            cout<<"Element not found!\n";
+            return;
+        }
+        if(root->data == val){
+            cout<<"Element found\n";
+            return;
+        }
+        if(val <= root->data){
+            search(root->left, val);
+        }else{
+            search(root->right, val);
+        }
+    }
+
+    void inOrder(Node *root)
+    {
+        if (root == nullptr)
+        {
             return;
         }
         inOrder(root->left);
-        cout<<root->data<<" ";  
+        cout << root->data << " ";
         inOrder(root->right);
     }
 };
 
-int main(){
+int main()
+{
     BinarySearchTree bst;
-    bst.root = bst.insert(bst.root,20);
-    bst.root = bst.insert(bst.root,15);
-    bst.root = bst.insert(bst.root,25);
-    bst.root = bst.insert(bst.root,10);
-    bst.root = bst.insert(bst.root,18);
-    bst.root = bst.insert(bst.root,23);
-    bst.root = bst.insert(bst.root,30);
+    bst.root = bst.insert(bst.root, 20);
+    bst.root = bst.insert(bst.root, 15);
+    bst.root = bst.insert(bst.root, 25);
+    bst.root = bst.insert(bst.root, 10);
+    bst.root = bst.insert(bst.root, 18);
+    bst.root = bst.insert(bst.root, 23);
+    bst.root = bst.insert(bst.root, 30);
 
-    cout<<"Inorder Traversal : ";
+    cout << "Inorder Traversal : ";
     bst.inOrder(bst.root);
+    cout<<"\n";
+    bst.search(bst.root,20);
+    bst.search(bst.root,40);
+    bst.search(bst.root,23);
 }
 
 /*
@@ -69,7 +96,7 @@ int main(){
     . inOrder Traversal
     . Print Binary Search Treen in ascending order
     . Check whether bst is correct or not
-  all are same because inOrder travesal print bst in 
-  ascending order and if it not print in ascending order 
-  that means our bst is not correct   
+  all are same because inOrder travesal print bst in
+  ascending order and if it not print in ascending order
+  that means our bst is not correct
   */
